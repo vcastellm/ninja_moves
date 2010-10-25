@@ -30,5 +30,15 @@
  * @package       cake
  * @subpackage    cake.app
  */
+
+Configure::load('facebook');
+App::import('Vendor', 'Facebook');
+
 class AppController extends Controller {
+  var $components = array('Auth');
+  
+  function beforeFilter() {
+    parent::beforeFilter();
+    $this->facebook = new Facebook(Configure::read('Facebook'));
+  }
 }
