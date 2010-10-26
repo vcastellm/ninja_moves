@@ -40,5 +40,6 @@ class AppController extends Controller {
   function beforeFilter() {
     parent::beforeFilter();
     $this->facebook = new Facebook(Configure::read('Facebook'));
+    $this->set('facebook', $this->facebook);
   }
 }

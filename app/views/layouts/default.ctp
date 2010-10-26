@@ -19,38 +19,7 @@
         $(function() {
           // initialize the library with the API key
           FB.init({ apiKey: '<?php echo Configure::read("Facebook.apiKey") ?>' });
-
-          // fetch the status on load
-          FB.getLoginStatus(handleSessionResponse);
-
-          $('#login').bind('click', function() {
-            FB.login(handleSessionResponse);
-          });
-
-          $('#logout').bind('click', function() {
-            FB.logout(handleSessionResponse);
-          });
-
-          $('#disconnect').bind('click', function() {
-            FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
-              clearDisplay();
-            });
-          });
-        });
-
-          // no user, clear display
-          function clearDisplay() {
-            $('#user-info').hide('fast');
-          }
-
-          // handle a session response from any of the auth related calls
-          function handleSessionResponse(response) {
-            // if we dont have a session, just hide the user info
-            if (!response.session) {
-              clearDisplay();
-              return;
-            }
-          }
+        }
     </script>
     
 	<div id="container">
@@ -60,13 +29,6 @@
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
-            
-            <div>
-                  <button id="login">Login</button>
-                  <button id="logout">Logout</button>
-                  <button id="disconnect">Disconnect</button>
-                </div>
-                <div id="user-info" style="display: none;"></div>
             
 			<?php echo $content_for_layout; ?>
 

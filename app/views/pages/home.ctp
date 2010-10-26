@@ -1,5 +1,5 @@
 <h2>Sweet, "App" got Baked by CakePHP!</h2>
-
+<h2><?php var_dump($facebook->api('me')); ?></h2>
 <?php
 if (Configure::read() > 0):
 	Debugger::checkSecurityKeys();
