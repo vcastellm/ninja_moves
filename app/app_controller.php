@@ -35,7 +35,7 @@ Configure::load('facebook');
 App::import('Vendor', 'Facebook');
 
 class AppController extends Controller {
-  var $components = array('Auth');
+  var $components = array('Auth', 'Session');
   var $uses = array('User');
   
   function beforeFilter() {
@@ -49,20 +49,22 @@ class AppController extends Controller {
   }
   
   function validateUser() {
-	  // set Auth to a convenience variable
+  	//set a session var as we are not logged in
+  	$this->Session->write('Facebook.loggedIn', false);
+  	$this->Session->write('Facebook.loginUrl', $this->facebook->getLoginUrl(array('fbconnect' => 0)));
+	  
+  	//convenience vars
     $Auth = $this->Auth;
-    
     $fb = $this->facebook;
     $session = $fb->getSession();
     
-    //means that we are not in facebook
+    //we don't have a facebook session
     if (empty($session)) {
-      if (isset($this->params['url']['signed_request'])) {
-        $this->set('redirect', true);
-      } else {
-        $this->redirect($this->facebook->getLoginUrl(array('fbconnect' => 0)));
+    	//means that we are not in facebook
+      if (!isset($this->params['url']['signed_request'])) {
+      	$this->redirect($this->facebook->getLoginUrl(array('fbconnect' => 0)));
       }
-            
+      
       return true;
     }
     
@@ -96,6 +98,6 @@ class AppController extends Controller {
       }
     }
     
-    $this->set('redirect', false);
+    $this->Session->write('Facebook.loggedIn', true);
 	}
 }
