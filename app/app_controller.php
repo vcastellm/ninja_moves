@@ -57,7 +57,13 @@ class AppController extends Controller {
     
     //means that we are not in facebook
     if (empty($session)) {
-      $this->redirect($this->facebook->getLoginUrl(array('fbconnect' => 0)));
+      if (isset($this->params['url']['signed_request'])) {
+        $this->set('redirect', true);
+      } else {
+        $this->redirect($this->facebook->getLoginUrl(array('fbconnect' => 0)));
+      }
+            
+      return true;
     }
     
 	  // check if the user already has an account
@@ -89,5 +95,7 @@ class AppController extends Controller {
         $Auth->login($user);
       }
     }
+    
+    $this->set('redirect', false);
 	}
 }
