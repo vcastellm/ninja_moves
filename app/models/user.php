@@ -24,5 +24,30 @@ class User extends AppModel {
 			),
 		),
 	);
+	var $hasMany = array(
+		'Attacks' => array(
+			'className' => 'Attack',
+			'foreignKey' => 'attacking_user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Defenses' => array(
+			'className' => 'Attack',
+			'foreignKey' => 'defending_user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+	);
+	
+	function attack($otherUser, $move) {
+	  $this->Attacks->create(array(
+	    'defending_user' => $otherUser,
+	    'move' => $move
+	  ));
+	}
+	
+	
 }
 ?>
