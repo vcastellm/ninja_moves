@@ -18,8 +18,13 @@
     <script>
         $(function() {
           // initialize the library with the API key
-          FB.init({ apiKey: '<?php echo Configure::read("Facebook.apiKey") ?>' });
-        }
+          FB.init({
+            appId   : "<?php echo Configure::read("Facebook.apiKey") ?>",
+            status  : true, // check login status
+            cookie  : true, // enable cookies to allow the server to access the session
+            xfbml   : true // parse XFBML
+        	});
+        });
     </script>
     
 	<div id="container">

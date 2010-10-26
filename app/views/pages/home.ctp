@@ -1,5 +1,24 @@
 <h2>Sweet, "App" got Baked by CakePHP!</h2>
 <h2><?php var_dump($facebook->api('me')); ?></h2>
+
+<fb:serverFbml>
+<script type="text/fbml">
+<fb:fbml>
+    <fb:request-form
+        method='POST'
+        type='join my Smiley group'
+        content='Would you like to join my Smiley group? 
+            <fb:req-choice url="http://apps.facebook.com/smiley/yes.php" 
+                label="Yes" />'
+            <fb:req-choice url="http://apps.facebook.com/smiley/no.php" 
+                label="No" />'
+        <fb:multi-friend-selector 
+            actiontext="Invite your friends to join your Smiley group.">
+    </fb:request-form>
+</fb:fbml>
+</script>
+</fb:serverFbml>
+
 <?php
 if (Configure::read() > 0):
 	Debugger::checkSecurityKeys();
