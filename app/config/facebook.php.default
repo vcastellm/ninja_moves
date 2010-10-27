@@ -9,5 +9,6 @@ $config = array(
     'apiKey' => 'API_KEY',
     'secret' => 'API_SECRET',
     'cookie' => true,
+    'canvas_url' => 'CANVAS_URL'
   )
 );
