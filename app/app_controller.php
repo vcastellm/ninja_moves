@@ -51,8 +51,8 @@ class AppController extends Controller {
   function validateUser() {
   	//set a session var as we are not logged in
   	$this->Session->write('Facebook.loggedIn', false);
-  	$this->Session->write('Facebook.loginUrl', $this->facebook->getLoginUrl(array('fbconnect' => 0)));
-	  
+	$this->Session->write('Facebook.facebook', $this->facebook);
+  	
   	//convenience vars
     $Auth = $this->Auth;
     $fb = $this->facebook;
@@ -62,7 +62,7 @@ class AppController extends Controller {
     if (empty($session)) {
     	//means that we are not in facebook
       if (!isset($this->params['url']['signed_request'])) {
-      	$this->redirect($this->facebook->getLoginUrl(array('fbconnect' => 0)));
+      	$this->redirect($this->facebook->getLoginUrl(array('fbconnect' => 0, 'req_perms' => 'publish_stream')));
       }
       
       return true;
@@ -71,7 +71,6 @@ class AppController extends Controller {
 	  // check if the user already has an account
     // User is logged in but doesn't have a 
     if ($Auth->user()) {
-      $this->hasAccount = true;
       $this->User->id = $Auth->user('id');
       if (!$this->User->field('facebook_id')) {
         $this->User->saveField('facebook_id', $session['uid']);
@@ -82,19 +81,15 @@ class AppController extends Controller {
       $user = $this->User->findByFacebookId($session['uid']);
       
       //if we have a user, set hasAccount
-      if (!empty($user)) {
-        $this->hasAccount = true;
-      }
-      //create the user if we don't have one
-      elseif (empty($user)) {
+      if (empty($user)) {
         $user[$this->User->alias]['facebook_id'] = $session['uid'];
         $user[$this->User->alias][$Auth->fields['password']] = $Auth->password('disabled');
-        $this->hasAccount = ($this->User->save($user, array('validate' => false)));
+        $this->User->save($user, array('validate' => false));
       }
       //Login user if we have one
       if ($user) {
         $Auth->fields = array('username' => 'facebook_id', 'password' => $Auth->fields['password']);    		
-        $Auth->login($user);
+        $Auth->login($user['User']);
       }
     }
     

@@ -16,8 +16,8 @@
     <div id="fb-root"></div>
     <?php echo $this->Html->script('http://connect.facebook.net/es_ES/all.js'); ?>
     <script>
-    <?php if ($session->read('Facebook.loggedIn') === false) { ?>
-			window.top.location = "<?php echo $session->read('Facebook.loginUrl'); ?>";
+        <?php if ($session->read('Facebook.loggedIn') === false) { ?>
+			window.top.location = "<?php echo  $session->read('Facebook.facebook')->getLoginUrl(array('fbconnect' => 0, 'req_perms' => 'publish_stream')); ?>";
 		<?php } ?>
         $(function() {
           // initialize the library with the API key

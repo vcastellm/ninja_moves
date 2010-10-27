@@ -53,15 +53,17 @@ class User extends AppModel {
 	
 	
 	function battles() {
-	  $this->Attack->find('all', array(
+	  $battles = $this->Attacks->find('all', array(
 	    'conditions' => array(
 	    	"OR" => array (
-	    		'Attack.attacking_user_id' => $this->id,
-	  			'Attack.defending_user_id' => $this->id,
+	    		'attacking_user_id' => $this->id,
+	  			'defending_user_id' => $this->id,
 	      )
 	    ),
 	    'order' => 'Attacks.created desc'
 	  ));
+	  
+	  return $battles;
 	}
 	
 	function for_id($id) {
