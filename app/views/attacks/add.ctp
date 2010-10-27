@@ -13,5 +13,5 @@
 		echo $this->Form->input('move_id', array('label' => 'Movimiento'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end('Atacar!');?>
+<?php echo $this->Form->end('¡Atacar!');?>
 </div>
