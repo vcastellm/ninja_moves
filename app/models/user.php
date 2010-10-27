@@ -48,7 +48,7 @@ class User extends AppModel {
 	    'move_id' => $move
 	  ));
 	  
-	  $this->Attacks->save();
+	  return $this->Attacks->save();
 	}
 	
 	

@@ -28,7 +28,7 @@ class Attack extends AppModel {
 	);
 	
 	function beforeSave($options) {
-	  $this->data['Attack']['hit'] = rand(0, 2);
+	  $this->data['Attacks']['hit'] = rand(0, 1);
 	  
 	  return true;
 	}
