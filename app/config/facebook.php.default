@@ -1,0 +1,13 @@
+<?php
+/**
+  * Get an api_key and secret from facebook and fill in this content.
+  * save the file to app/config/facebook.php
+  */
+$config = array(
+  'Facebook' => array(
+    'appId' => 'APP_ID',
+    'apiKey' => 'API_KEY',
+    'secret' => 'API_SECRET',
+    'cookie' => true,
+  )
+);
