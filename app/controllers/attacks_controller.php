@@ -40,7 +40,7 @@ class AttacksController extends AppController {
           $move = $this->Move->findById($this->data['Attack']['move_id']);
     
 	      $this->facebook->api('/me/feed', 'POST', array(
-	      	'link' => 'http://apps.facebook.com/ninja_moves',
+	      	'link' => 'http://apps.facebook.com/' . Configure::read("Facebook.canvas_url"),
 	        'name' => '¡Devuélvelo!',
 	      	'message' => 'ha atacado a ' . $fb_user['name'] . ' con ' . $move['Move']['name'],
 	        'caption' => 'Golpes a porrillo'
