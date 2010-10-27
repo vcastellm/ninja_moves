@@ -2,8 +2,12 @@
 
 # Prevent sensitive data from ending up in your repo
 /app/config/database.php
-/app/config/core.php
+/app/config/facebook.php
  
 # prevent temporary files from ending up in our repo
+/app/tmp/cache/models/cake_*
 /app/tmp/cache/persistent/cake_*
 /app/tmp/logs/*.log
+
+.project
+.settings/
