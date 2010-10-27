@@ -68,17 +68,17 @@ class User extends AppModel {
 	
 	function for_id($id) {
 	  // attempt to find the user by their facebook id
-    $user = $this->findByFacebookId($id);
-    
-    //if not in the db create new one
-    if (empty($user)) {
-      $user = new User();
-      $user->set('facebook_id', $id);
-      $user->save();
-      return $user->id;  
-    } else {
-      return $user['User']['id'];
-    }
+      $user = $this->findByFacebookId($id);
+      
+      //if not in the db create new one
+      if (empty($user)) {
+        $user = new User();
+        $user->set('facebook_id', $id);
+        $user->save();
+        return $user->id;  
+      } else {
+        return $user['User']['id'];
+      }
 	}
 	
 }
