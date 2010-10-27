@@ -44,7 +44,7 @@ class User extends AppModel {
 	function attack($otherUser, $move) {
 	  $this->Attacks->create(array(
 	    'attacking_user_id' => $this->id,
-	    'defending_user_id' => userFor($otherUser),
+	    'defending_user_id' => $this->for_id($otherUser),
 	    'move_id' => $move
 	  ));
 	  
@@ -62,6 +62,21 @@ class User extends AppModel {
 	    ),
 	    'order' => 'Attacks.created desc'
 	  ));
+	}
+	
+	function for_id($id) {
+	  // attempt to find the user by their facebook id
+    $user = $this->findByFacebookId($id);
+    
+    //if not in the db create new one
+    if (empty($user)) {
+      $user = new User();
+      $user->set('facebook_id', $id);
+      $user->save();
+      return $user->id;  
+    } else {
+      return $user['User']['id'];
+    }
 	}
 	
 }
