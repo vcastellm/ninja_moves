@@ -67,5 +67,8 @@ class AttacksController extends AppController {
 	  $moves = $this->Attack->Move->find('list');
 	  $this->set(compact('moves', 'friends'));
 	}
+	
+	function share() {
+	}
 }
 ?>
