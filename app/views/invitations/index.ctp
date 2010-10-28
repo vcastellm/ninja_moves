@@ -2,7 +2,7 @@
      <script type="text/fbml">
         <fb:fbml>
             <fb:request-form
-                action="<?php echo $this->Html->url(array('action' => 'index'), true); ?>"
+                action="<?php echo $this->Html->url(array('controller' => 'invitations', 'action' => 'add'), true); ?>"
                 method="POST"
                 invite="true"
                 type="Ninja Moves"

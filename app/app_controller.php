@@ -51,7 +51,7 @@ class AppController extends Controller {
   function validateUser() {
   	//set a session var as we are not logged in
   	$this->Session->write('Facebook.loggedIn', false);
-	$this->Session->write('Facebook.facebook', $this->facebook);
+	  $this->Session->write('Facebook.facebook', $this->facebook);
   	
   	//convenience vars
     $Auth = $this->Auth;

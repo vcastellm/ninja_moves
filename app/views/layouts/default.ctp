@@ -35,9 +35,9 @@
 			<h1>Ninja Moves</h1>
 			<div id="menu">
 				<ul>
-					<li><?php echo $this->Html->link('Tus ataques',array('controller'=>'attacks','action'=>'index')) ?></li>
-					<li><?php echo $this->Html->link('Enviar ataque',array('controller'=>'attacks','action'=>'add')) ?></li>
-					<li><?php echo $this->Html->link('Invita a tus amigos',array('controller'=>'attacks','action'=>'share')) ?></li>
+					<li><?php echo $this->Html->link('Tus ataques',array('controller'=>'attacks', 'action'=>'index')) ?></li>
+					<li><?php echo $this->Html->link('Enviar ataque',array('controller'=>'attacks', 'action'=>'add')) ?></li>
+					<li><?php echo $this->Html->link('Invita a tus amigos',array('controller'=>'invitations', 'action'=>'index')) ?></li>
 			</div>
 		</div>
 		<div id="content">
