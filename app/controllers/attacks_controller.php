@@ -22,7 +22,8 @@ class AttacksController extends AppController {
 	}
 
 	function add() {
-	  if (!empty($this->data)) {
+	  //hacemos unas cuantas comprobaciones para comprobar que nos esta llegando info
+	  if (!empty($this->data) && isset($this->data['Attack']) && !empty($this->data['Attack']['defending_user_id'])) {
 	    $hits = array();
 	    $misses = array();
 
