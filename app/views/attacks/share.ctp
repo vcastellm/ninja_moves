@@ -1,4 +1,4 @@
-<fb:serverFbml style="width: 755px;">  
+<fb:serverFbml>  
      <script type="text/fbml">
         <fb:fbml>
             <fb:request-form
