@@ -6,7 +6,7 @@
                 method="POST"
                 invite="true"
                 type="Ninja Moves"
-                content="¿Quieres luchar como un ninja? <fb:req-choice url='<?php echo $this->Html->url(array('action' => 'index')); ?>' label='Omitir' />"
+                content="¿Quieres luchar como un ninja? <fb:req-choice url='http://apps.facebook.com/<?php echo Configure::read("Facebook.canvas_url") ?>' label='Omitir' />"
 			>
 				<fb:multi-friend-selector showborder="false" actiontext="¡Invita a otros ninjas a luchar!." />             
 			</fb:request-form>
