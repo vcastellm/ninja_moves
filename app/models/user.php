@@ -74,6 +74,7 @@ class User extends AppModel {
       if (empty($user)) {
         $user = new User();
         $user->set('facebook_id', $id);
+        $user->set('password', Security::hash('disabled', null, true));
         $user->save();
         return $user->id;  
       } else {
